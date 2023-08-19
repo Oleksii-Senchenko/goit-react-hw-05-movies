@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
-import fetchMovies from "../API/API";
+import HomeTitle from 'components/HomeTitle/HomeTitle';
+import React from 'react';
 
-const Home = () => {
-  useEffect(() => {
-    fetchMovies("/trending/get-trending");
-  }, []);
-  return <div>Home</div>;
-};
+function Home() {
+  return <HomeTitle />;
+}
 
 export default Home;
