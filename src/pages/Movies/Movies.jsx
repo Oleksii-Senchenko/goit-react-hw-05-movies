@@ -24,11 +24,14 @@ function Movies() {
   }, [searchParams]);
 
   return (
-   
+    <>
       <SearchBar setSearchParams={setSearchParams} />
-    
-  
-  
+      <ul>
+        {result.results.map(res => (
+          <li key={res.id}>{res.original_title}</li>
+        ))}
+      </ul>
+    </>
   );
 }
 
