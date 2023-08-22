@@ -10,17 +10,26 @@ const Reviews = () => {
     const fetchReviews = async () => {
       try {
         const response = await fetchMovies(`movie/${moviesId}/reviews`);
-        setReviews(response);
-        console.log(response);
+        setReviews(response.data.results);
+        console.log(response.data.results);
       } catch (e) {
         console.error(e);
       }
     };
     fetchReviews();
   }, [moviesId]);
-  console.log(reviews);
 
-  return <div>Reviews</div>;
+  return (
+    <div>
+      {reviews.map(review => (
+        <div key={review.id}>
+          <h3>{review.author}</h3>
+          <p>{review.content}</p>
+
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default Reviews;

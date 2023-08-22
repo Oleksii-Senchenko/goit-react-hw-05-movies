@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import fetchMovies from '../../API/API';
-import { Link } from 'react-router-dom';
+
+import {
+  HomeBox,
+  HomeList,
+  HomeItem,
+  HomeLink,
+
+} from './HomeTitle.styled';
 
 const HomeTitle = () => {
   const [results, setResults] = useState([]);
@@ -18,17 +25,19 @@ const HomeTitle = () => {
     fetchTrending();
   }, []);
   return (
-    <>
-      <ul>
+    <HomeBox>
+      <HomeList style={{ borderRadius: '30px' }}>
         {results.map(result => (
-          <li key={result.id}>
-            <Link to={`/movies/${result.id}`}>  {result.title || result.name} </Link>
-           
-           
-          </li>
+          <HomeItem key={result.id}>
+            <HomeLink to={`/movies/${result.id}`}>
+              {' '}
+              {result.title || result.name}{' '}
+            </HomeLink>
+          </HomeItem>
         ))}
-      </ul>
-    </>
+      </HomeList>
+   
+    </HomeBox>
   );
 };
 

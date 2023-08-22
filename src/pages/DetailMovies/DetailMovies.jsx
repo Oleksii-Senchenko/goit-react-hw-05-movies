@@ -48,7 +48,7 @@ const DetailMovies = () => {
             <p>{movie.overview}</p>
           </Overview>
           <GenresContainer>
-            <h3>Genres</h3>
+            <h3 style={{ color: 'white' }}>Genres</h3>
             {movie.genres.map(genre => (
               <Genre key={genre.id}>{genre.name}</Genre>
             ))}
@@ -59,7 +59,6 @@ const DetailMovies = () => {
         <h3>Aditional information</h3>
         <ul>
           <li>
-    
             <Link to={`/movies/${moviesId}/cast`}>Cast</Link>
           </li>
           <li>

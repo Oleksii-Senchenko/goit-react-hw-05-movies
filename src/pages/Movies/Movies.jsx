@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import fetchMovies from 'API/API';
+import SearchBar from 'components/SearchBar/SearchBar';
 
-const Movies = () => {
+function Movies() {
+  const [result, setResult] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const searchQuery = searchParams.get('query');
+    const fetchMoviesList = async () => {
+      try {
+        const fetchedMoviesList = await fetchMovies(
+          `search/movie?query=${searchQuery}`
+        );
+        setResult(fetchedMoviesList);
+        console.log(fetchedMoviesList);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchMoviesList();
+  }, [searchParams]);
+
   return (
-    <div>Movies</div>
-  )
+   
+      <SearchBar setSearchParams={setSearchParams} />
+    
+  
+  
+  );
 }
 
-export default Movies
+export default Movies;
+
+
