@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fetchMovies from '../../API/API';
-
-import {
-  HomeBox,
-  HomeList,
-  HomeItem,
-  HomeLink,
-
-} from './HomeTitle.styled';
+import { HomeBox } from './HomeTitle.styled';
+import Films from 'components/MoviesList/MoviesList';
 
 const HomeTitle = () => {
   const [results, setResults] = useState([]);
@@ -26,17 +20,7 @@ const HomeTitle = () => {
   }, []);
   return (
     <HomeBox>
-      <HomeList style={{ borderRadius: '30px' }}>
-        {results.map(result => (
-          <HomeItem key={result.id}>
-            <HomeLink to={`/movies/${result.id}`}>
-              {' '}
-              {result.title || result.name}{' '}
-            </HomeLink>
-          </HomeItem>
-        ))}
-      </HomeList>
-   
+      <Films results={results} />
     </HomeBox>
   );
 };

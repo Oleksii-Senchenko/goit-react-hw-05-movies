@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-const SearchQuery = ({ setSearchParams }) => {
+const SearchQuery = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    setSearchParams(query);
-    
+    onSubmit(query);
+    setQuery('')
   };
 
   const handleChange = ({ target }) => {
@@ -15,9 +15,9 @@ const SearchQuery = ({ setSearchParams }) => {
   };
 
   return (
-    <form action="">
+    <form action="" onSubmit={handleSubmit}>
       <input type="text" onChange={handleChange} />
-      <button type="submit" onClick={handleSubmit}></button>
+      <button type="submit">Search</button>
     </form>
   );
 };

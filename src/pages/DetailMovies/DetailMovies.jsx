@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+
 import fetchMovies from 'API/API';
 import {
   MovieDetailsContainer,
@@ -14,6 +15,10 @@ import {
 
 const DetailMovies = () => {
   const { moviesId } = useParams();
+
+  const location = useLocation();
+  console.log(location);
+
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
@@ -28,13 +33,16 @@ const DetailMovies = () => {
     fetchDetails();
   }, [moviesId]);
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div>Film is not found</div>;
   }
 
   const userScore = Math.round(movie.vote_average * 10);
 
+  const cameFrom = location?.state?.from ?? '/';
+
   return (
     <>
+      <Link to={cameFrom}>Go back</Link>
       <MovieDetailsContainer>
         <MoviePoster
           src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}

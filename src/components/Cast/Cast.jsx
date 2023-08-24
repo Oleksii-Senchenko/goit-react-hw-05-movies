@@ -20,30 +20,33 @@ const Cast = () => {
     fetchCast();
   }, [moviesId]);
 
-  console.log(credits); // Выводит актуальные данные credits
+  console.log(credits);
 
   return (
     <div>
-      <ul>
-        {credits.map(credit => {
-          return (
-            <li key={credit.id}>
-              <img
-                width="100px"
-                height="150px"
-                src={
-                  credit.profile_path
-                    ? `https://image.tmdb.org/t/p/original/${credit.profile_path}`
-                    : '🥰'
-                }
-                alt={credit.name}
-              />
-              <h2>{credit.name}</h2>
-              <p>{credit.character}</p>
-            </li>
-          );
-        })}
-      </ul>
+      {credits.length > 0 && (
+        <ul>
+          {credits.map(credit => {
+            return (
+              <li key={credit.id}>
+                <img
+                  width="100px"
+                  height="150px"
+                  src={
+                    credit.profile_path
+                      ? `https://image.tmdb.org/t/p/original/${credit.profile_path}`
+                      : '🥰'
+                  }
+                  alt={credit.name}
+                />
+                <h2>{credit.name}</h2>
+                <p>{credit.character}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {credits.length === 0 && <p>Sorry cast missed casts</p>}
     </div>
   );
 };
