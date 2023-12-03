@@ -33,9 +33,7 @@ const Cast = () => {
                   width="100px"
                   height="150px"
                   src={
-                    credit.profile_path
-                      ? `https://image.tmdb.org/t/p/original/${credit.profile_path}`
-                      : '🥰'
+                    credit.profile_path ? `https://image.tmdb.org/t/p/original/${credit.profile_path}`: '🥰'
                   }
                   alt={credit.name}
                 />
